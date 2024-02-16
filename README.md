@@ -98,6 +98,7 @@ Follow these steps to set up the project locally:
    to add these values to your ```.env.local``` file as follows:
 
    NEXT_PUBLIC_SUPABASE_URL=<Your Supabase API URL>
+   
    NEXT_PUBLIC_SUPABASE_ANON_KEY=<Your Supabase ANON KEY>
 
 1. **Start the development server**
