@@ -1,20 +1,19 @@
-import { NextResponse } from "next/server";
-import { getSpeakersFromSupabase } from "@/utils/controller";
 import {
   AccessDeniedError,
   SupabaseError,
   UnhandledError,
   NotAuthenticatedError,
 } from "@/errors/databaseerror";
+import { getSpeakersFromSupabase } from "@/utils/controller";
+import { NextResponse } from "next/server";
 
 export async function GET() {
   try {
-    const data = await getSpeakersFromSupabase();
+    const speakers = await getSpeakersFromSupabase();
 
     return NextResponse.json({
-      message: "retrieved data successfully",
-      data: data,
       status: 200,
+      speakers: speakers,
     });
   } catch (err) {
     if (err instanceof AccessDeniedError) {
@@ -27,15 +26,15 @@ export async function GET() {
         status: 503,
         message: err.message,
       });
-    } else if (err instanceof UnhandledError) {
-      return NextResponse.json({
-        status: 500,
-        message: err.message,
-      });
     } else if (err instanceof NotAuthenticatedError) {
       return NextResponse.json({
         status: 401,
         message: err.message,
+      });
+    } else {
+      return NextResponse.json({
+        status: 500,
+        message: "Internal server error",
       });
     }
   }

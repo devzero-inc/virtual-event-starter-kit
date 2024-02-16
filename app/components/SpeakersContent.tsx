@@ -10,7 +10,7 @@ const SpeakersContent = () => {
 
   useEffect(() => {
     getSpeakers().then((data) => {
-      setSpeakers(data.data);
+      setSpeakers(data.speakers);
     });
   }, []);
 

@@ -13,7 +13,7 @@ const DevzeroStageContent = () => {
   useEffect(() => {
     getEvents()
       .then((data) => {
-        const eventArray:schedule[] = data.data;
+        const eventArray:schedule[] = data.events;
         const filteredArray:schedule[] = eventArray.filter((ele: schedule) => {
           return ele.event_type === "DevZero Stage";
         });
