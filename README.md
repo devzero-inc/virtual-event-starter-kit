@@ -4,6 +4,15 @@
 ***
 The Virtual Event Starter Kit simplifies organizing and executing virtual events within your organization. Built with React for the frontend, Next.js for the backend, and utilizing Redis and Supabase for data storage, this platform ensures reliability and scalability. From customizable stages to interactive sessions, sponsor expos, and ticketing systems, it offers essential tools for seamless event management and enhanced attendee engagement. Recent enhancements include support for live virtual events, expanding capabilities to host diverse event formats. Getting started is easy with straightforward cloning and deployment options, along with integration instructions for preferred CMS and authentication mechanisms.
 
+![Alt text](https://i.imgur.com/odAVqks.png)
+
+### TODO
+***
+1. Database seeding script to populate database with sample data.
+2. Unit tests for backend and frontend.
+3. Live chat functionality.
+4. Dockerize the app.
+
 ### Features
 ***
 - **Multiple stages:** Customize and manage multiple event stages effortlessly, accommodating various sessions on each stage.<br>
@@ -51,3 +60,53 @@ Once the data operations are completed, the backend API handles the response gen
 The backend API sends the response back to the frontend, which then displays the appropriate content to the user.
 Additionally, the backend API may also send responses directly to the user in certain scenarios, such as authentication or error messages.
 
+
+## Installation
+
+Follow these steps to set up the project locally:
+
+### Prerequisites
+
+- Node.js and npm must be installed on your machine.
+- Docker must be installed and running on your machine for the Supabase services.
+
+### Setup
+
+1. **Install dependencies**
+
+   Open a terminal in the project directory and run the following command:
+
+   ```bash
+   npm install
+
+1. **Create a local environment file**
+
+   Create a file named ```.env.local``` in the root of your project directory. This file will 
+   store your local environment variables.
+
+1. **Start Supabase locally**
+
+   To start Supabase locally, ensure the Docker daemon is running, then execute the 
+   following command:
+
+   ```bash
+   npx supabase start
+
+1. **Configure environment variables**
+
+   After starting Supabase, it will provide an **API_URL** and an **ANON_KEY**. You need 
+   to add these values to your ```.env.local``` file as follows:
+
+   NEXT_PUBLIC_SUPABASE_URL=<Your Supabase API URL>
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=<Your Supabase ANON KEY>
+
+1. **Start the development server**
+
+   Finally, to run your project locally, execute:
+
+   ```bash
+   npm run dev
+
+This will start the development server. Once running, you can access your project at [http://localhost:3000/](http://localhost:3000/).
+
+*Note* - You wont see any schedules or speakers detail on the website since it wont be there on your local database.
