@@ -51,3 +51,18 @@ Once the data operations are completed, the backend API handles the response gen
 The backend API sends the response back to the frontend, which then displays the appropriate content to the user.
 Additionally, the backend API may also send responses directly to the user in certain scenarios, such as authentication or error messages.
 
+---
+### Installation
+
+**Prerequisites**
+- Docker
+
+  **Run locally**
+  ```
+   git clone https://github.com/devzero-inc/virtual-event-starter-kit.git
+   docker compose up
+  ```
+
+  The app will be running on PORT:3000 -> http://localhost:3000/
+  Now just go to http://localhost:3000/ and explore the application.
+
