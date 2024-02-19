@@ -5,9 +5,19 @@ import {
   UnhandledError,
   NotAuthenticatedError,
 } from "@/errors/databaseerror";
+import redis from "@/lib/redisClient";
 
 export async function getEventsFromSupabase() {
+
+  const cacheKey = 'events';
+
   try {
+
+    let cachedData = await redis.get(cacheKey);
+    if(cachedData) {
+      return JSON.parse(cachedData);
+    }
+
     const { data, error } = await supabase.from("events").select(`
     event_id,
     event_title,
@@ -30,6 +40,8 @@ export async function getEventsFromSupabase() {
         default:
           throw new UnhandledError("Internal server error");
       }
+    } else {
+      await redis.set(cacheKey, JSON.stringify(data), 'EX', 600);
     }
     return data;
   } catch (error) {
@@ -39,7 +51,16 @@ export async function getEventsFromSupabase() {
 }
 
 export async function getSpeakersFromSupabase() {
+
+  const cacheKey = 'speakers';
+
   try {
+
+    let cachedData = await redis.get(cacheKey);
+    if(cachedData) {
+      return JSON.parse(cachedData);
+    }
+
       const { data, error } = await supabase.from('speakers').select('*');
       if (error) {
           switch (error.message) {
@@ -52,6 +73,8 @@ export async function getSpeakersFromSupabase() {
               default:
                   throw new UnhandledError('Internal server error');
           }
+      } else {
+        await redis.set(cacheKey, JSON.stringify(data), 'EX', 600);
       }
       return  data;
   } catch (error) {

@@ -65,9 +65,7 @@ async function insertSpeakers() {
         if (error) {
             console.error('Error:', error);
             break;
-        } else {
-            console.log('Inserted:', data);
-        }
+        } 
     }
 }
 
@@ -152,9 +150,7 @@ async function insertEvents() {
         if (error) {
             console.error('Error:', error);
             break;
-        } else {
-            console.log('Inserted:', data);
-        }
+        } 
     }
 }
 
@@ -163,6 +159,7 @@ async function insertEvents() {
     try {
         await insertSpeakers();
         await insertEvents();
+        console.log('Data inserted successfully');
     } catch (error) {
         console.error('Error:', error);
     }
