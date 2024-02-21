@@ -1,0 +1,31 @@
+name: Virtual Event Starter Kit
+
+on:
+  push:
+    branches: [main]
+    paths: "**"
+  pull_request:
+    branches: [main]
+    paths: "**"
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: "20.x"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
