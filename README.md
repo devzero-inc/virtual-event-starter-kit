@@ -51,14 +51,6 @@ The backend API sends the response back to the frontend, which then displays the
 Additionally, the backend API may also send responses directly to the user in certain scenarios, such as authentication or error messages.
 
 
-## Installation
-
-Follow these steps to set up the project locally:
-
-### Prerequisites
-
-- Docker must be installed and running on your machine.
-
 ### Installation
 
 **Prerequisites**
