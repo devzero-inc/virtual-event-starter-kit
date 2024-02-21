@@ -4,7 +4,7 @@ import {
   SupabaseError,
   NotAuthenticatedError,
 } from "@/errors/databaseerror";
-import { getEventsFromSupabase } from "@/utils/controller";
+import { getEventsFromSupabase } from "@/controller/controller";
 
 export async function GET(): Promise<NextResponse> {
   try {

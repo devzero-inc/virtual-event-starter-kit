@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest",
-    "startapp": "node script.js && npm run build && npm run start"
+    "startapp": "node scripts/db-seed.js && npm run build && npm run start"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",

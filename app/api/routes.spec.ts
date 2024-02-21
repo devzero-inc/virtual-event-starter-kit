@@ -1,10 +1,10 @@
-import { GET as eventsGet } from "../app/api/events/route";
-import { GET as speakersGet } from "../app/api/speakers/route";
+import { GET as eventsGet } from "@/app/api/events/route";
+import { GET as speakersGet } from "@/app/api/speakers/route";
 
 import {
   getEventsFromSupabase,
   getSpeakersFromSupabase,
-} from "../utils/controller";
+} from "@/controller/controller";
 import {
   SupabaseError,
   NotAuthenticatedError,
@@ -12,7 +12,7 @@ import {
   UnhandledError,
 } from "@/errors/databaseerror";
 
-jest.mock("../utils/controller", () => ({
+jest.mock("../../controller/controller", () => ({
   getEventsFromSupabase: jest.fn(),
   getSpeakersFromSupabase: jest.fn(),
 }));

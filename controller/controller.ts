@@ -30,12 +30,12 @@ export async function getEventsFromSupabase() {
     )
   `);
     if (error) {
-      switch (error.message) {
-        case "Table not found":
+      switch (error.code) {
+        case "PGRST200":
           throw new SupabaseError("Table not found");
-        case "Access Denied":
+        case "PGRST302":
           throw new AccessDeniedError("Access Denied");
-        case "Not Authenticated":
+        case "PGRST301":
           throw new NotAuthenticatedError("Not Authenticated");
         default:
           throw new UnhandledError("Internal server error");
@@ -63,16 +63,16 @@ export async function getSpeakersFromSupabase() {
 
       const { data, error } = await supabase.from('speakers').select('*');
       if (error) {
-          switch (error.message) {
-              case 'Table not found':
-                  throw new SupabaseError('Table not found');
-              case 'Access Denied':
-                  throw new AccessDeniedError('Access Denied');
-              case 'Not Authenticated':
-                  throw new NotAuthenticatedError('Not Authenticated');
-              default:
-                  throw new UnhandledError('Internal server error');
-          }
+        switch (error.code) {
+          case "PGRST200":
+            throw new SupabaseError("Table not found");
+          case "PGRST302":
+            throw new AccessDeniedError("Access Denied");
+          case "PGRST301":
+            throw new NotAuthenticatedError("Not Authenticated");
+          default:
+            throw new UnhandledError("Internal server error");
+        }
       } else {
         await redis.set(cacheKey, JSON.stringify(data), 'EX', 600);
       }

@@ -4,7 +4,7 @@ import {
   UnhandledError,
   NotAuthenticatedError,
 } from "@/errors/databaseerror";
-import { getSpeakersFromSupabase } from "@/utils/controller";
+import { getSpeakersFromSupabase } from "@/controller/controller";
 import { NextResponse } from "next/server";
 
 export async function GET() {

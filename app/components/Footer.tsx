@@ -6,10 +6,10 @@ const Footer = () => {
             <h1 className="text-2xl font-bold">
                 DevZero Stage
             </h1>
-            <button className=" bg-white p-2 md:p-4 rounded-lg flex items-center gap-2 hover:bg-cus-purple-light  hover:text-white text-black font-semibold transition-all">
+            <a href="https://github.com/devzero-inc/" className=" bg-white p-2 md:p-4 rounded-lg flex items-center gap-2 hover:bg-cus-purple-light  hover:text-white text-black font-semibold transition-all">
                 <p>Join us on Github</p>
                 <GitHubIcon/>
-            </button>
+            </a>
         </div>
     )
 }
