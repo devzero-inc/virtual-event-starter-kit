@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  app:
+    build: .
+    container_name: nextjs-dind-app-virtual-event
+    privileged: true
+    environment:
+      - DOCKER_TLS_CERTDIR=/certs
+      - REDIS_URL=redis://redis-container:6379
+    volumes:
+      - /var/lib/docker
+    ports:
+      - '3000:3000'
+      - '54321:54321'
+    depends_on:
+      - redis-container
+
+  redis-container:
+    image: redis
+    container_name: nextjs-redis
+    ports:
+      - '6379:6379'

@@ -13,7 +13,7 @@ const DevzeroStageContent = () => {
   useEffect(() => {
     getEvents()
       .then((data) => {
-        const eventArray:schedule[] = data.data;
+        const eventArray:schedule[] = data.events;
         const filteredArray:schedule[] = eventArray.filter((ele: schedule) => {
           return ele.event_type === "DevZero Stage";
         });
@@ -24,7 +24,7 @@ const DevzeroStageContent = () => {
   return (
     <div className="bg-cus-purple-light flex flex-col md:flex-row h-full">
       <div className=" w-full md:w-[75%] flex flex-col">
-        <Video link="https://www.youtube.com/embed/mdB7utqqT4Y?autoplay=1" />
+        <Video link="https://www.youtube.com/embed/mdB7utqqT4Y" />
         <Footer />
       </div>
       <div className="flex flex-col flex-1 h-full overflow-auto pb-5 text-white">

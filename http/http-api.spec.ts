@@ -1,4 +1,4 @@
-import { getEvents } from "@/http/api";
+import { getEvents, getSpeakers } from "@/http/api";
 
 global.fetch = jest.fn();
 
@@ -42,3 +42,41 @@ describe("getEvents function", () => {
     }
   });
 });
+
+describe("getSpeakers function", () => {
+  it("should fetch speakers correctly", async () => {
+    const mockData = {
+      message: "retrieved data successfully",
+      data: [
+        {
+          id: "a7efc63d-3e11-4bcb-b414-854235f7a5d6",
+          speaker_name: "John Doe",
+          position: "software engineer",
+          created_at: "2021-02-01T00:00:00.000Z",
+          updated_at: "2021-02-01T00:00:00.000Z",
+        },
+      ],
+      status: 200,
+    };
+
+    const mockResponse = { json: jest.fn().mockResolvedValue(mockData) };
+    (global.fetch as jest.Mock).mockResolvedValue(mockResponse);
+
+    const result = await getSpeakers();
+
+    expect(result).toEqual(mockData);
+    expect(global.fetch).toHaveBeenCalledWith("/api/speakers");
+  });
+
+  it("should throw an error if fetch fails", async () => {
+    const mockError = new Error("Failed to fetch");
+    (global.fetch as jest.Mock).mockRejectedValue(mockError);
+
+    try {
+      await getSpeakers();
+    } catch (error) {
+      expect(error).toEqual(mockError);
+    }
+  });
+});
+

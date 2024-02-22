@@ -6,21 +6,11 @@ The Virtual Event Starter Kit simplifies organizing and executing virtual events
 
 ![Alt text](https://i.imgur.com/odAVqks.png)
 
-### TODO
-***
-1. Database seeding script to populate database with sample data.
-2. Unit tests for backend and frontend.
-3. Live chat functionality.
-4. Dockerize the app.
-
 ### Features
 ***
 - **Multiple stages:** Customize and manage multiple event stages effortlessly, accommodating various sessions on each stage.<br>
-- **Flexible stage configuration:** Configure each stage with either an embedded YouTube stream or a live interactive audio-video experience powered by a third-party service.<br>
-- **Sponsor expo:** Showcase sponsors with individual virtual booths, allowing for enhanced visibility and engagement opportunities.<br>
-- **Career Fair:** Facilitate networking and job discovery for attendees with dedicated career fair sections.<br>
-- **Ticket registration and generation:** Simplify event registration and ticket issuance processes for attendees.<br>
-- **Speaker pages and bios:** Highlight event speakers with dedicated pages featuring bios and contributions.<br>
+- **Flexible stage configuration:** Configure each stage with an embedded YouTube video.<br>
+- **Speaker pages:** Highlight event speakers with dedicated pages.<br>
 - **Schedule management:** Streamline event scheduling and coordination with a comprehensive schedule management system.<br>
 
 ### Technologies Used
@@ -61,53 +51,17 @@ The backend API sends the response back to the frontend, which then displays the
 Additionally, the backend API may also send responses directly to the user in certain scenarios, such as authentication or error messages.
 
 
-## Installation
+### Installation
 
-Follow these steps to set up the project locally:
+**Prerequisites**
+- Docker
 
-### Prerequisites
+**Run locally**
+```
+git clone https://github.com/devzero-inc/virtual-event-starter-kit.git
+cd virtual-event-starter-kit
+docker compose up
+```
 
-- Node.js and npm must be installed on your machine.
-- Docker must be installed and running on your machine for the Supabase services.
-
-### Setup
-
-1. **Install dependencies**
-
-   Open a terminal in the project directory and run the following command:
-
-   ```bash
-   npm install
-
-1. **Create a local environment file**
-
-   Create a file named ```.env.local``` in the root of your project directory. This file will 
-   store your local environment variables.
-
-1. **Start Supabase locally**
-
-   To start Supabase locally, ensure the Docker daemon is running, then execute the 
-   following command:
-
-   ```bash
-   npx supabase start
-
-1. **Configure environment variables**
-
-   After starting Supabase, it will provide an **API_URL** and an **ANON_KEY**. You need 
-   to add these values to your ```.env.local``` file as follows:
-
-   NEXT_PUBLIC_SUPABASE_URL=<Your Supabase API URL>
-   
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=<Your Supabase ANON KEY>
-
-1. **Start the development server**
-
-   Finally, to run your project locally, execute:
-
-   ```bash
-   npm run dev
-
-This will start the development server. Once running, you can access your project at [http://localhost:3000/](http://localhost:3000/).
-
-*Note* - You wont see any schedules or speakers detail on the website since it wont be there on your local database.
+The app will be running on PORT:3000 -> http://localhost:3000/
+Now just go to http://localhost:3000/ and explore the application.

@@ -1,35 +1,32 @@
-class DatabaseErrror extends Error {
-    status: string;
-    message: string;
-
-    constructor(status: string, message: string) {
+class DatabaseError extends Error {
+    code: string;
+    
+    constructor(message: string, code: string) {
         super(message);
-        this.status = status;
-        this.message = message;
+        this.code = code;
     }
 }
 
-class NotAuthenticatedError extends DatabaseErrror {
-    constructor() {
-        super('AUTH_DENIED', 'User not authenticated.');
+class NotAuthenticatedError extends DatabaseError {
+    constructor(message: string) {
+        super(message, 'AUTH_DENIED');
     }
 }
 
-class AccessDeniedError extends DatabaseErrror {
-    constructor() {
-        super('ACCESS_DENIED', 'Access to this resource denied.');
+class AccessDeniedError extends DatabaseError {
+    constructor(message: string) {
+        super(message, 'ACCESS_DENIED');
     }
 }
 
-class SupabaseError extends DatabaseErrror {
-    constructor() {
-        super('SUPABASE_ERR', ` Supabase error occurred.`);
+class SupabaseError extends DatabaseError {
+    constructor(message: string) {
+        super(message, 'SUPABASE_ERR');
     }
 }
-
-class UnhandledError extends DatabaseErrror {
-    constructor() {
-        super("UNHANDLED_ERR", 'Internal Server Error.');
+class UnhandledError extends DatabaseError {
+    constructor(message: string) {
+        super(message, 'UNHANDLED_ERROR');
     }
 }
 

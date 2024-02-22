@@ -11,7 +11,7 @@ const ScheduleContent = () => {
 
   useEffect(() => {
     getEvents().then((data) => {
-      const eventArray = data.data;
+      const eventArray = data.events;
       const liveTimingMap: timingMap = {};
       const devzeroTimingMap: timingMap = {};
 

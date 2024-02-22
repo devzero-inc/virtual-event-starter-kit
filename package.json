@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "startapp": "node scripts/db-seed.js && npm run build && npm run start"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -16,6 +17,8 @@
     "@mui/material": "^5.15.10",
     "@supabase/ssr": "^0.1.0",
     "@supabase/supabase-js": "^2.39.6",
+    "dotenv": "^16.4.4",
+    "ioredis": "^5.3.2",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
