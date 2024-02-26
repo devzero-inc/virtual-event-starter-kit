@@ -29,3 +29,44 @@ jobs:
 
       - name: Run tests
         run: npm test
+
+  check-docker-compose:
+    runs-on: ubuntu-latest
+    needs: [build-and-test]
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up Docker and Docker Compose
+        run: |
+          sudo rm /usr/local/bin/docker-compose
+          curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o docker-compose
+          chmod +x docker-compose
+          sudo mv docker-compose /usr/local/bin
+
+      - name: Build and run with Docker Compose
+        run: |
+          docker-compose up -d
+          RETRIES=30
+          SLEEP_DURATION=30
+          SUCCESS=false
+
+          echo "Waiting for the application to start and become available at localhost:3000..."
+          for ((i=0; i<RETRIES; i++)); do
+            if curl -f http://localhost:3000/; then
+              SUCCESS=true
+              break
+            fi
+            echo "Attempt $((i+1)) of $RETRIES failed, retrying in $SLEEP_DURATION seconds..."
+            sleep $SLEEP_DURATION
+          done
+
+          if [ "$SUCCESS" = true ]; then
+            echo "Successfully connected to the application on localhost:3000!"
+          else
+            echo "Failed to connect to the application on localhost:3000 after $RETRIES retries."
+            exit 1
+          fi
+
+      - name: Cleanup Docker Compose
+        run: |
+          docker-compose down

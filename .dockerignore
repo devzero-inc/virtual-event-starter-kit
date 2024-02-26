@@ -5,3 +5,10 @@ docker-compose.yml
 .env.local
 start.txt
 .next
+.github
+.vscode
+.eslintrc.json
+.gitattributes
+.gitignore
+jest.confg.ts
+README.md
