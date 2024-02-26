@@ -10,5 +10,5 @@ start.txt
 .eslintrc.json
 .gitattributes
 .gitignore
-jest.confg.ts
+jest.config.ts
 README.md
