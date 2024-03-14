@@ -1,4 +1,4 @@
-# Virtual-Event-Starter
+# Virtual-Event-Starter ![ workflow](https://github.com/devzero-inc/virtual-event-starter-kit/actions/workflows/main.yml/badge.svg)
 
 ### Overview
 ***
